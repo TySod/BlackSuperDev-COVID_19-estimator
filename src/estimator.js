@@ -13,8 +13,6 @@ const covid19ImpactEstimator = (data) => {
   // //   population: 66622705,
   // //   totalHospitalBeds: 1380614
   // // };
-  // let data.reportedCases ;
-  // let data.totalHospitalBeds;
 
   const periodCheck = (val) => {
     if (val === 'weeks') {
@@ -26,10 +24,20 @@ const covid19ImpactEstimator = (data) => {
     return 2 ** Math.floor(data.timeToElapse / 3);
   };
 
+  // const severeCalc = (cases) => {
+  //   if (cases === 'weeks') {
+  //     return 2 ** Math.floor((data.timeToElapse * 7) / 3);
+  //   }
+  //   if (cases === 'months') {
+  //     return 2 ** Math.floor((data.timeToElapse * 30) / 3);
+  //   }
+  //   return 2 ** Math.floor(data.timeToElapse / 3);
+  // };
+
 
   const eInfected = data.reportedCases * 10;
   const eRequestedTime = eInfected * periodCheck(data.periodType);
-  const eSCasesByRequestedTime = eRequestedTime * 0.15;
+  const eSCasesByRequestedTime = (eInfected * periodCheck(data.periodType)) * 0.15;
   const eHBedsByRequestedTime = data.totalHospitalBeds * 0.35 - eSCasesByRequestedTime;
   const eC4ICUByRequestedTime = eRequestedTime * 0.05;
   const eC4VentilatorsByRequestedTime = eRequestedTime * 0.02;
@@ -47,7 +55,7 @@ const covid19ImpactEstimator = (data) => {
 
   const pInfected = data.reportedCases * 50;
   const pRequestedTime = pInfected * periodCheck(data.periodType);
-  const pSCByRequestedTime = pRequestedTime * 0.15;
+  const pSCByRequestedTime = (pInfected * periodCheck(data.periodType)) * 0.15;
   const pHBedsByRequestedTime = data.totalHospitalBeds * 0.35 - pSCByRequestedTime;
   const pC4ICUByRequestedTime = pRequestedTime * 0.05;
   const pC4VentilatorsByRequestedTime = pRequestedTime * 0.02;
