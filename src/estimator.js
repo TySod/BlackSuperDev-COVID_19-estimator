@@ -55,11 +55,11 @@ const covid19ImpactEstimator = (data) => {
   const eHBedsByRequestedTime = (beds - periodCheck(dur));
   const eC4ICUByRequestedTime = (periodCheck(dur) * 0.05);
   const eC4VentilatorsByRequestedTime = (periodCheck(dur) * 0.02);
-  const eDollarsInFlight = (((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const eDollarsInFlight = ((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur);
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
-    eSevereCasesByRequestedTime: eSCasesByRequestedTime,
+    severeCasesByRequestedTime: eSCasesByRequestedTime,
     hospitalBedsByRequestedTime: eHBedsByRequestedTime,
     casesForVentilatorsByRequestedTime: eC4VentilatorsByRequestedTime,
     casesForICUByRequestedTime: eC4ICUByRequestedTime,
@@ -72,7 +72,7 @@ const covid19ImpactEstimator = (data) => {
   const pHBedsByRequestedTime = (beds - severeCalc(dur));
   const pC4ICUByRequestedTime = (severeCalc(dur) * 0.05);
   const pC4VentilatorsByRequestedTime = (severeCalc(dur) * 0.02);
-  const pDollarsInFlight = (((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const pDollarsInFlight = ((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur);
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
