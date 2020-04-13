@@ -15,9 +15,9 @@ const covid19ImpactEstimator = (data) => {
   // // };
 
   const timeEst = {};
-  timeEst.days = null;
-  timeEst.weeks = null;
-  timeEst.months = null;
+  timeEst.days = 0;
+  timeEst.weeks = 0;
+  timeEst.months = 0;
 
 
   const periodCheck = (val) => {
