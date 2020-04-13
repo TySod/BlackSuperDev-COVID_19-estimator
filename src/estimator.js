@@ -67,7 +67,7 @@ const covid19ImpactEstimator = (data) => {
   };
 
 
-  const pRequestedTime = periodCheck(dur);
+  const pRequestedTime = severeCalc(dur);
   const pSCByRequestedTime = severeCalc(dur);
   const pHBedsByRequestedTime = Math.trunc(beds - severeCalc(dur));
   const pC4ICUByRequestedTime = Math.trunc(severeCalc(dur) * 0.05);
