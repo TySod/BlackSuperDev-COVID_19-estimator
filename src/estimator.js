@@ -16,11 +16,11 @@ const covid19ImpactEstimator = (data) => {
 
   const timeEst = (time) => {
     if (time === 'weeks') {
-      return (data.timeToElapse) * 30 * 7;
+      return (data.timeToElapse) * 7;
     } if (time === 'months') {
-      return (data.timeToElapse) * 30 * 30;
+      return (data.timeToElapse) * 30;
     }
-    return (data.timeToElapse) * 30;
+    return (data.timeToElapse);
   };
   const percentIncome = data.region.avgDailyIncomePopulation;
   const avgInc = data.region.avgDailyIncomeUse;
@@ -52,7 +52,7 @@ const covid19ImpactEstimator = (data) => {
 
   const eRequestedTime = periodCheck(dur);
   const eSCasesByRequestedTime = (0.15 * periodCheck(dur));
-  const eHBedsByRequestedTime = (beds - periodCheck(dur));
+  const eHBedsByRequestedTime = Math.floor((beds * 0.35) - (0.15 * periodCheck(dur)));
   const eC4ICUByRequestedTime = (periodCheck(dur) * 0.05);
   const eC4VentilatorsByRequestedTime = (periodCheck(dur) * 0.02);
   const eDollarsInFlight = ((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur);
@@ -69,7 +69,7 @@ const covid19ImpactEstimator = (data) => {
 
   const pRequestedTime = severeCalc(dur);
   const pSCByRequestedTime = severeCalc(dur);
-  const pHBedsByRequestedTime = (beds - severeCalc(dur));
+  const pHBedsByRequestedTime = (beds * 0.35 - (severeCalc(dur) * 0.15));
   const pC4ICUByRequestedTime = (severeCalc(dur) * 0.05);
   const pC4VentilatorsByRequestedTime = (severeCalc(dur) * 0.02);
   const pDollarsInFlight = ((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur);
