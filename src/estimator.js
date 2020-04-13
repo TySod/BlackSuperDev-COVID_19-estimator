@@ -45,17 +45,17 @@ const covid19ImpactEstimator = (data) => {
       return pInfected * (2 ** Math.trunc((data.timeToElapse * 7) / 3));
     }
     if (cases === 'months') {
-      return pInfected * (2 ** Math.trunc((data.timeToElapse * 30) / 3));
+      return pInfected * (2 ** Math.floor((data.timeToElapse * 30) / 3));
     }
-    return pInfected * (2 ** Math.trunc(data.timeToElapse / 3));
+    return pInfected * (2 ** Math.floor(data.timeToElapse / 3));
   };
 
   const eRequestedTime = periodCheck(dur);
-  const eSCasesByRequestedTime = Math.trunc(0.15 * periodCheck(dur));
-  const eHBedsByRequestedTime = Math.trunc(beds - periodCheck(dur));
-  const eC4ICUByRequestedTime = Math.trunc(periodCheck(dur) * 0.05);
-  const eC4VentilatorsByRequestedTime = Math.trunc(periodCheck(dur) * 0.02);
-  const eDollarsInFlight = Math.trunc(((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const eSCasesByRequestedTime = (0.15 * periodCheck(dur));
+  const eHBedsByRequestedTime = (beds - periodCheck(dur));
+  const eC4ICUByRequestedTime = (periodCheck(dur) * 0.05);
+  const eC4VentilatorsByRequestedTime = (periodCheck(dur) * 0.02);
+  const eDollarsInFlight = (((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur));
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
@@ -69,10 +69,10 @@ const covid19ImpactEstimator = (data) => {
 
   const pRequestedTime = severeCalc(dur);
   const pSCByRequestedTime = severeCalc(dur);
-  const pHBedsByRequestedTime = Math.trunc(beds - severeCalc(dur));
-  const pC4ICUByRequestedTime = Math.trunc(severeCalc(dur) * 0.05);
-  const pC4VentilatorsByRequestedTime = Math.trunc(severeCalc(dur) * 0.02);
-  const pDollarsInFlight = Math.trunc(((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const pHBedsByRequestedTime = (beds - severeCalc(dur));
+  const pC4ICUByRequestedTime = (severeCalc(dur) * 0.05);
+  const pC4VentilatorsByRequestedTime = (severeCalc(dur) * 0.02);
+  const pDollarsInFlight = (((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur));
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
