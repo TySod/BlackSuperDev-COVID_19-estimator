@@ -47,7 +47,7 @@ const covid19ImpactEstimator = (data) => {
   const eInfected = data.reportedCases * 10;
   const eRequestedTime = eInfected * periodCheck(data.periodType);
   const eSCasesByRequestedTime = severeCalc(data.periodType);
-  const eHBedsByRequestedTime = data.totalHospitalBeds * 0.35 - severeCalc(data.periodType);
+  const eHBedsByRequestedTime = (data.totalHospitalBeds * 0.35) - severeCalc(data.periodType);
   const eC4ICUByRequestedTime = eRequestedTime * 0.05;
   const eC4VentilatorsByRequestedTime = eRequestedTime * 0.02;
   const eDollarsInFlight = eRequestedTime * 0.65 * 0.71 * 30;
@@ -65,7 +65,7 @@ const covid19ImpactEstimator = (data) => {
   const pInfected = data.reportedCases * 50;
   const pRequestedTime = pInfected * periodCheck(data.periodType);
   const pSCByRequestedTime = severeCalc(data.periodType);
-  const pHBedsByRequestedTime = data.totalHospitalBeds * 0.35 - severeCalc(data.periodType);
+  const pHBedsByRequestedTime = (data.totalHospitalBeds * 0.35) - severeCalc(data.periodType);
   const pC4ICUByRequestedTime = pRequestedTime * 0.05;
   const pC4VentilatorsByRequestedTime = pRequestedTime * 0.02;
   const pDollarsInFlight = pRequestedTime * 0.65 * 0.71 * 30;
