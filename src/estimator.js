@@ -14,43 +14,48 @@ const covid19ImpactEstimator = (data) => {
   // //   totalHospitalBeds: 1380614
   // // };
 
-  const timeEst = {};
-  timeEst.days = 0;
-  timeEst.weeks = 0;
-  timeEst.months = 0;
+  const timeEst = (time) => {
+    if (time === 'weeks') {
+      return (data.timeToElapse) * 30 * 7;
+    } if (time === 'months') {
+      return (data.timeToElapse) * 30 * 30;
+    }
+    return (data.timeToElapse) * 30;
+  };
+  const percentIncome = data.region.avgDailyIncomePopulation;
+  const avgInc = data.region.avgDailyIncomeUse;
+  const dur = data.periodType;
+  const eInfected = data.reportedCases * 10;
+  const pInfected = data.reportedCases * 50;
+  const beds = data.totalHospitalBeds;
 
 
   const periodCheck = (val) => {
     if (val === 'weeks') {
-      timeEst.weeks = 2 ** Math.floor((data.timeToElapse * 7) / 3);
-      return timeEst.weeks;
+      return eInfected * (2 ** Math.trunc((data.timeToElapse * 7) / 3));
     }
     if (val === 'months') {
-      timeEst.months = 2 ** Math.floor((data.timeToElapse * 30) / 3);
-      return timeEst.months;
+      return eInfected * (2 ** Math.trunc((data.timeToElapse * 30) / 3));
     }
-    timeEst.days = 2 ** Math.floor(data.timeToElapse / 3);
-    return timeEst.days;
+    return eInfected * (2 ** Math.trunc(data.timeToElapse / 3));
   };
 
   const severeCalc = (cases) => {
     if (cases === 'weeks') {
-      return timeEst.weeks * 0.15;
+      return pInfected * (2 ** Math.trunc((data.timeToElapse * 7) / 3));
     }
     if (cases === 'months') {
-      return timeEst.months * 0.15;
+      return pInfected * (2 ** Math.trunc((data.timeToElapse * 30) / 3));
     }
-    return timeEst.days * 0.15;
+    return pInfected * (2 ** Math.trunc(data.timeToElapse / 3));
   };
 
-
-  const eInfected = data.reportedCases * 10;
-  const eRequestedTime = eInfected * periodCheck(data.periodType);
-  const eSCasesByRequestedTime = severeCalc(data.periodType);
-  const eHBedsByRequestedTime = (data.totalHospitalBeds * 0.35) - severeCalc(data.periodType);
-  const eC4ICUByRequestedTime = eRequestedTime * 0.05;
-  const eC4VentilatorsByRequestedTime = eRequestedTime * 0.02;
-  const eDollarsInFlight = eRequestedTime * 0.65 * 0.71 * 30;
+  const eRequestedTime = periodCheck(dur);
+  const eSCasesByRequestedTime = Math.trunc(0.15 * periodCheck(dur));
+  const eHBedsByRequestedTime = Math.trunc((beds * 0.35) - periodCheck(dur));
+  const eC4ICUByRequestedTime = Math.trunc(periodCheck(dur) * 0.05);
+  const eC4VentilatorsByRequestedTime = Math.trunc(periodCheck(dur) * 0.02);
+  const eDollarsInFlight = Math.trunc(((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur));
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
@@ -62,13 +67,12 @@ const covid19ImpactEstimator = (data) => {
   };
 
 
-  const pInfected = data.reportedCases * 50;
-  const pRequestedTime = pInfected * periodCheck(data.periodType);
-  const pSCByRequestedTime = severeCalc(data.periodType);
-  const pHBedsByRequestedTime = (data.totalHospitalBeds * 0.35) - severeCalc(data.periodType);
-  const pC4ICUByRequestedTime = pRequestedTime * 0.05;
-  const pC4VentilatorsByRequestedTime = pRequestedTime * 0.02;
-  const pDollarsInFlight = pRequestedTime * 0.65 * 0.71 * 30;
+  const pRequestedTime = periodCheck(dur);
+  const pSCByRequestedTime = severeCalc(dur);
+  const pHBedsByRequestedTime = Math.trunc((beds * 0.35) - severeCalc(dur));
+  const pC4ICUByRequestedTime = Math.trunc(severeCalc(dur) * 0.05);
+  const pC4VentilatorsByRequestedTime = Math.trunc(severeCalc(dur) * 0.02);
+  const pDollarsInFlight = Math.trunc(((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur));
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
