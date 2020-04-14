@@ -14,6 +14,8 @@ document.addEventListener('install', (installEvent) => {
   );
 });
 
+self.addEventListener('activate', event => event);
+
 document.addEventListener('fetch', (fetchEvent) => {
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => res || fetch(fetchEvent.request))
