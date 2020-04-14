@@ -1,3 +1,11 @@
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('public/serviceWorker.js')
+      .then((res) => `service worker registered ${res}`)
+      .catch((err) => err);
+  });
+}
 const covid19ImpactEstimator = (data) => {
   // let input = data;
   // // input = {
@@ -85,32 +93,5 @@ const covid19ImpactEstimator = (data) => {
   };
 
   return { data, impact, severeImpact };
-
-
-  // const estimator = chain(
-  //   estimateCurrentlyInfected,
-  //   estimateProjectedInfections,
-
-  //   estimateSevereCases,
-  //   estimateBedSpaceAvailability,
-
-  //   estimateCasesForICU,
-  //   estimateCasesForVentilators,
-  //   estimateDollarsinFlight
-  // );
-
-  // return estimator({
-  //   data,
-  //   impact: {},
-  //   severeImpact: {}
-  // });
 };
 export default covid19ImpactEstimator;
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('public/serviceWorker.js')
-      .then((res) => `service worker registered ${res}`)
-      .catch((err) => err);
-  });
-}
