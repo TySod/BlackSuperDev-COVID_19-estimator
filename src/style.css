@@ -5,6 +5,14 @@ main {
   width: 80%;
   margin: 0 auto;
 }
-input {
+input, select {
   display: block;
+  max-width: 90%;
+  padding: 10px;
+  line-height: 20px;
+  margin: 20px;
+  margin-top: 5px;
+  background-color: #2266ff;
+  color: #ff6622;
+  font-size: medium;
 }

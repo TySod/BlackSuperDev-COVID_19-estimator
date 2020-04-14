@@ -54,9 +54,9 @@ const covid19ImpactEstimator = (data) => {
   const eRequestedTime = periodCheck(dur);
   const eSCasesByRequestedTime = (0.15 * periodCheck(dur));
   const eHBedsByRequestedTime = Math.trunc((beds * 0.35) - (0.15 * periodCheck(dur)));
-  const eC4ICUByRequestedTime = periodCheck(dur) * 0.05;
+  const eC4ICUByRequestedTime = Math.trunc(periodCheck(dur) * 0.05);
   const eC4VentilatorsByRequestedTime = Math.trunc(periodCheck(dur) * 0.02);
-  const eDollarsInFlight = Math.trunc(((periodCheck(dur) * centInc * avgInc)) / timeEst(elT, dur));
+  const eDollarsInFlight = Math.trunc((periodCheck(dur) * 0.85 * 5) / elT);
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
@@ -71,9 +71,9 @@ const covid19ImpactEstimator = (data) => {
   const pRequestedTime = severeCalc(dur);
   const pSCByRequestedTime = 0.15 * severeCalc(dur);
   const pHBedsByRequestedTime = Math.trunc((beds * 0.35) - (severeCalc(dur) * 0.15));
-  const pC4ICUByRequestedTime = severeCalc(dur) * 0.05;
+  const pC4ICUByRequestedTime = Math.trunc(severeCalc(dur) * 0.05);
   const pC4VentilatorsByRequestedTime = Math.trunc(severeCalc(dur) * 0.02);
-  const pDollarsInFlight = Math.trunc(((severeCalc(dur) * centInc * avgInc)) / timeEst(elT, dur));
+  const pDollarsInFlight = Math.trunc((severeCalc(dur) * 0.85 * 5) / elT);
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
