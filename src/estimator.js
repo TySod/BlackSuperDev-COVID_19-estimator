@@ -1,5 +1,5 @@
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in window.navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('public/serviceWorker.js')
       .then((res) => `service worker registered ${res}`)
