@@ -7,23 +7,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <fieldset>
-    <legend>Covid-19</legend>
-    <label for="population">Population</label>
-    <input data-population type="text" name="" id="population">    
-    <label for="timeToElapse">Time to Predict</label>
-    <input data-time-to-elapse type="text" name="" id="timeToElapse">
-    <label for="reportedCases">Cases Reported</label>
-    <input data-reported-cases type="text" name="" id="reportedCases">
-    <label for="totalHospitalBeds">Bedspace Available</label>
-    <input data-total-hospital-beds type="text" name="" id="totalHospitalBeds">
-    <select data-period-type for="periodType">
-      <option name="days" id="">Days</option>
-      <option name="weeks" id="">Weeks</option>
-      <option name="months" id="">Months</option>
-    </select>
-    <button type="submit"></button>
-  </fieldset>
+  <main>
+    <h1>COVID-19 Estimator</h1>
+    <form action="" method="post">
+      <fieldset>
+        <legend>Covid-19</legend>
+        <label for="population">Population</label>
+        <input data-population type="text" name="" id="population">    
+        <label for="timeToElapse">Time to Predict</label>
+        <input data-time-to-elapse type="text" name="" id="timeToElapse">
+        <label for="reportedCases">Cases Reported</label>
+        <input data-reported-cases type="text" name="" id="reportedCases">
+        <label for="totalHospitalBeds">Bedspace Available</label>
+        <input data-total-hospital-beds type="text" name="" id="totalHospitalBeds">
+        <select data-period-type for="periodType">
+          <option name="days" id="">Days</option>
+          <option name="weeks" id="">Weeks</option>
+          <option name="months" id="">Months</option>
+        </select>
+        <button type="submit"></button>
+      </fieldset>
+    </form> 
+  </main>
   
   <script src="estimator.js"></script>
 </body>
