@@ -22,14 +22,14 @@ const covid19ImpactEstimator = (data) => {
   const beds = data.totalHospitalBeds;
   const elT = data.timeToElapse;
 
-  const timeEst = (time, period) => {
-    if (period === 'weeks') {
-      return time * 7;
-    } if (period === 'months') {
-      return time * 30;
-    }
-    return time;
-  };
+  // const timeEst = (time, period) => {
+  //   if (period === 'weeks') {
+  //     return time * 7;
+  //   } if (period === 'months') {
+  //     return time * 30;
+  //   }
+  //   return time;
+  // };
 
   const periodCheck = (val) => {
     if (val === 'weeks') {
