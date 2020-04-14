@@ -1,0 +1,24 @@
+{
+  "name": "BlackSuperDev-Estimator",
+  "short_name": "Covid-19-Estimator",
+  "start_url": "/src/",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#aaccff",
+  "orientation": "portrait-primary",
+  "dir": "ltr",
+  "lang": "en-US",
+  "description": "An app showing places I would like to visit",
+  "icons": [
+    {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
+}

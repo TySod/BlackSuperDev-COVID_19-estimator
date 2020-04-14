@@ -105,4 +105,13 @@ const covid19ImpactEstimator = (data) => {
   //   severeImpact: {}
   // });
 };
+
+if("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("public/serviceWorker.js")
+    .then(res => console.log("service worker registered"))
+    .catch(err => console.error(err));
+  });
+}
 export default covid19ImpactEstimator;
+
