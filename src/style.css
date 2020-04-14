@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+}
+main {
+  width: 80%;
+  margin: 0 auto;
+  background: rgba(123, 128, 129, 0.418);
+  padding: 2%;
+}
+h1{
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: auto;
+}
+form {
+  background: #cdcdcd;
+  width: 100%;
+  margin: auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+input, select {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  line-height: 20px;
+  margin: 20px auto;
+  margin-top: 5px;
+  border-radius: 10px;
+  font-size: medium;
+}
+select {
+  width: 30%;
+}
+label {
+  padding-left: 10px;
+  margin-left: 20px;
+}
+button {
+  display: block;
+  align-self: center;
+  width: 50%;
+  padding: 10px;
+  line-height: 20px;
+  margin: auto;
+  justify-self: center;
+  border-radius: 10px;
+  font-size: 100% ;
+  background-color: forestgreen;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
