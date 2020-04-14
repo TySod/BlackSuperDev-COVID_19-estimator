@@ -22,14 +22,14 @@ const covid19ImpactEstimator = (data) => {
   const beds = data.totalHospitalBeds;
   const elT = data.timeToElapse;
 
-  // const timeEst = (time, period) => {
-  //   if (period === 'weeks') {
-  //     return time * 7;
-  //   } if (period === 'months') {
-  //     return time * 30;
-  //   }
-  //   return time;
-  // };
+  const timeEst = (time, period) => {
+    if (period === 'weeks') {
+      return time * 7;
+    } if (period === 'months') {
+      return time * 30;
+    }
+    return time;
+  };
 
   const periodCheck = (val) => {
     if (val === 'weeks') {
@@ -56,7 +56,7 @@ const covid19ImpactEstimator = (data) => {
   const eHBedsByRequestedTime = Math.trunc((beds * 0.35) - (0.15 * periodCheck(dur)));
   const eC4ICUByRequestedTime = Math.trunc(periodCheck(dur) * 0.05);
   const eC4VentilatorsByRequestedTime = Math.trunc(periodCheck(dur) * 0.02);
-  const eDollarsInFlight = Math.trunc((periodCheck(dur) * 0.85 * 5) / elT);
+  const eDollarsInFlight = Math.trunc((periodCheck(dur) * 0.85 * 5) / timeEst(elT, dur));
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
@@ -73,7 +73,7 @@ const covid19ImpactEstimator = (data) => {
   const pHBedsByRequestedTime = Math.trunc((beds * 0.35) - (severeCalc(dur) * 0.15));
   const pC4ICUByRequestedTime = Math.trunc(severeCalc(dur) * 0.05);
   const pC4VentilatorsByRequestedTime = Math.trunc(severeCalc(dur) * 0.02);
-  const pDollarsInFlight = Math.trunc((severeCalc(dur) * 0.85 * 5) / elT);
+  const pDollarsInFlight = Math.trunc((severeCalc(dur) * 0.85 * 5) / timeEst(elT, dur));
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
