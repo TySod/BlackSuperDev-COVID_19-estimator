@@ -14,21 +14,22 @@ const covid19ImpactEstimator = (data) => {
   // //   totalHospitalBeds: 1380614
   // // };
 
-  const timeEst = (time) => {
-    if (time === 'weeks') {
-      return (data.timeToElapse) * 7;
-    } if (time === 'months') {
-      return (data.timeToElapse) * 30;
-    }
-    return (data.timeToElapse);
-  };
-  const percentIncome = data.region.avgDailyIncomePopulation;
+  const centInc = data.region.avgDailyIncomePopulation;
   const avgInc = data.region.avgDailyIncomeUse;
   const dur = data.periodType;
   const eInfected = data.reportedCases * 10;
   const pInfected = data.reportedCases * 50;
   const beds = data.totalHospitalBeds;
+  const elT = data.timeToElapse;
 
+  const timeEst = (time, period) => {
+    if (period === 'weeks') {
+      return time * 7;
+    } if (period === 'months') {
+      return time * 30;
+    }
+    return time;
+  };
 
   const periodCheck = (val) => {
     if (val === 'weeks') {
@@ -55,7 +56,7 @@ const covid19ImpactEstimator = (data) => {
   const eHBedsByRequestedTime = Math.trunc((beds * 0.35) - (0.15 * periodCheck(dur)));
   const eC4ICUByRequestedTime = periodCheck(dur) * 0.05;
   const eC4VentilatorsByRequestedTime = Math.trunc(periodCheck(dur) * 0.02);
-  const eDollarsInFlight = Math.trunc(((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const eDollarsInFlight = Math.trunc(((periodCheck(dur) * centInc * avgInc)) / timeEst(elT, dur));
   const impact = {
     currentlyInfected: eInfected,
     infectionsByRequestedTime: eRequestedTime,
@@ -72,7 +73,7 @@ const covid19ImpactEstimator = (data) => {
   const pHBedsByRequestedTime = Math.trunc((beds * 0.35) - (severeCalc(dur) * 0.15));
   const pC4ICUByRequestedTime = severeCalc(dur) * 0.05;
   const pC4VentilatorsByRequestedTime = Math.trunc(severeCalc(dur) * 0.02);
-  const pDollarsInFlight = Math.trunc(((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur));
+  const pDollarsInFlight = Math.trunc(((severeCalc(dur) * centInc * avgInc)) / timeEst(elT, dur));
   const severeImpact = {
     currentlyInfected: pInfected,
     infectionsByRequestedTime: pRequestedTime,
