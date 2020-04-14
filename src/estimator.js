@@ -52,7 +52,7 @@ const covid19ImpactEstimator = (data) => {
 
   const eRequestedTime = periodCheck(dur);
   const eSCasesByRequestedTime = (0.15 * periodCheck(dur));
-  const eHBedsByRequestedTime = Math.trunc((0.15 * periodCheck(dur)) - (beds * 0.35));
+  const eHBedsByRequestedTime = Math.trunc((beds * 0.35) - (0.15 * periodCheck(dur)));
   const eC4ICUByRequestedTime = (periodCheck(dur) * 0.05);
   const eC4VentilatorsByRequestedTime = (periodCheck(dur) * 0.02);
   const eDollarsInFlight = ((periodCheck(dur) * percentIncome * avgInc)) / timeEst(dur);
@@ -69,7 +69,7 @@ const covid19ImpactEstimator = (data) => {
 
   const pRequestedTime = severeCalc(dur);
   const pSCByRequestedTime = 0.15 * severeCalc(dur);
-  const pHBedsByRequestedTime = Math.trunc((severeCalc(dur) * 0.15) - (beds * 0.35));
+  const pHBedsByRequestedTime = Math.trunc((beds * 0.35) - (severeCalc(dur) * 0.15));
   const pC4ICUByRequestedTime = (severeCalc(dur) * 0.05);
   const pC4VentilatorsByRequestedTime = (severeCalc(dur) * 0.02);
   const pDollarsInFlight = ((severeCalc(dur) * percentIncome * avgInc)) / timeEst(dur);
