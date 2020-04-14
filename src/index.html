@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Covid-19, coronavirus, estimator, cases, ventilator, ICU, hospital beds">
   <title>Covid-19 Estimator</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,23 +11,20 @@
   <main>
     <h1>COVID-19 Estimator</h1>
     <form action="" method="post">
-      <fieldset>
-        <legend>Covid-19</legend>
         <label for="population">Population</label>
         <input data-population type="text" name="" id="population">    
-        <label for="timeToElapse">Time to Predict</label>
-        <input data-time-to-elapse type="text" name="" id="timeToElapse">
         <label for="reportedCases">Cases Reported</label>
         <input data-reported-cases type="text" name="" id="reportedCases">
         <label for="totalHospitalBeds">Bedspace Available</label>
         <input data-total-hospital-beds type="text" name="" id="totalHospitalBeds">
+        <label for="timeToElapse">Time to Predict</label>
+        <input data-time-to-elapse type="text" name="" id="timeToElapse">
         <select data-period-type for="periodType">
-          <option name="days" id="">Days</option>
-          <option name="weeks" id="">Weeks</option>
-          <option name="months" id="">Months</option>
+          <option name="days" id="">days</option>
+          <option name="weeks" id="">weeks</option>
+          <option name="months" id="">months</option>
         </select>
-        <button type="submit">Estimate</button>
-      </fieldset>
+        <button dtat-go-estimate type="submit">Estimate</button>
     </form> 
   </main>
   
