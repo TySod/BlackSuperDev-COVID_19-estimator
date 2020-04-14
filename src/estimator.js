@@ -14,8 +14,8 @@ const covid19ImpactEstimator = (data) => {
   // //   totalHospitalBeds: 1380614
   // // };
 
-  const centInc = data.region.avgDailyIncomePopulation;
-  const avgInc = data.region.avgDailyIncomeUse;
+  // const centInc = data.region.avgDailyIncomePopulation;
+  // const avgInc = data.region.avgDailyIncomeUse;
   const dur = data.periodType;
   const eInfected = data.reportedCases * 10;
   const pInfected = data.reportedCases * 50;
