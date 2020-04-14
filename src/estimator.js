@@ -85,24 +85,5 @@ const covid19ImpactEstimator = (data) => {
   };
 
   return { data, impact, severeImpact };
-
-
-  // const estimator = chain(
-  //   estimateCurrentlyInfected,
-  //   estimateProjectedInfections,
-
-  //   estimateSevereCases,
-  //   estimateBedSpaceAvailability,
-
-  //   estimateCasesForICU,
-  //   estimateCasesForVentilators,
-  //   estimateDollarsinFlight
-  // );
-
-  // return estimator({
-  //   data,
-  //   impact: {},
-  //   severeImpact: {}
-  // });
 };
 export default covid19ImpactEstimator;
