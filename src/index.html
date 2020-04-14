@@ -4,24 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covid-19 Estimator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <fieldset>
     <legend>Covid-19</legend>
     <label for="population">Population</label>
-    <input type="text" name="" id="population">    
+    <input data-population type="text" name="" id="population">    
     <label for="timeToElapse">Time to Predict</label>
-    <input type="text" name="" id="timeToElapse">
+    <input data-time-to-elapse type="text" name="" id="timeToElapse">
     <label for="reportedCases">Cases Reported</label>
-    <input type="text" name="" id="reportedCases">
+    <input data-reported-cases type="text" name="" id="reportedCases">
     <label for="totalHospitalBeds">Bedspace Available</label>
-    <input type="text" name="" id="totalHospitalBeds">
-    <select for="periodType">
+    <input data-total-hospital-beds type="text" name="" id="totalHospitalBeds">
+    <select data-period-type for="periodType">
       <option name="days" id="">Days</option>
       <option name="weeks" id="">Weeks</option>
       <option name="months" id="">Months</option>
     </select>
+    <button type="submit"></button>
   </fieldset>
   
+  <script src="estimator.js"></script>
 </body>
 </html>
