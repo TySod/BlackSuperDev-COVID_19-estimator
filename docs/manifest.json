@@ -8,7 +8,7 @@
   "orientation": "portrait-primary",
   "dir": "ltr",
   "lang": "en-US",
-  "description": "An app showing places I would like to visit",
+  "description": "An estimtor for predicting the impact of covid-19",
   "icons": [
     {
         "src": "/android-chrome-192x192.png",
